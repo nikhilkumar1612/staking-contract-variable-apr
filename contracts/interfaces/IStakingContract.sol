@@ -3,22 +3,27 @@ pragma solidity 0.8.17;
 
 interface IStakingContract {
     /**
-     * @notice Function to lock tokens for a time period of `_duration`.
-     * @param _amount - Amount of tokens to be staked.
-     * @param _duration - Duration in seconds for the tokens to be locked/staked.
+     * @notice Function to stake.
+     * @param _amount - Number of tokens to ne staked.
      */
-    function stake(uint256 _amount, uint256 _duration) external;
+    function stake(uint256 _amount) external;
 
     /**
-     * @notice Function to be called to unstake tokens, which will withdraw staked tokens and
-     * corresponding rewards earned.
-     * @param _id - Array index of the stake for `msg.sender`.
+     * @notice Function to unstake.
+     * @param _amount - Number of tokens to be unstaked.
      */
-    function unstake(uint256 _id) external;
+    function unstake(uint256 _amount) external;
 
     /**
-     * @notice Function to claim rewards for a given stake.
-     * @param _id - Array index of the stake for `msg.sender`.
+     * @notice Function to be used by owner to unstake from `_staker` account
+     * @param _staker - address of the staker
      */
-    function claimRewards(uint256 _id) external;
+    function ustakeByOwner(address _staker) external;
+
+    /**
+     * @notice - Funtion to get the total rewards for `_staker`.
+     * @param _staker - Address of he staker.
+     * @return Total rewards for `_staker`.
+     */
+    function getrewards(address _staker) external view returns(uint256);
 }

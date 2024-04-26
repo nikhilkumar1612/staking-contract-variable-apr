@@ -3,9 +3,10 @@ pragma solidity 0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {StakingManager} from "./StakingManager.sol";
+import {IStakingContract} from "./interfaces/IStakingContract.sol";
 import "./Errors.sol";
 
-contract StakingContract is StakingManager{
+contract StakingContract is IStakingContract, StakingManager{
 
     uint256 constant ONE_YEAR = 365 days;
     uint256 constant APR_PRECISION = 100;
@@ -35,8 +36,7 @@ contract StakingContract is StakingManager{
     }
 
     /**
-     * @notice Function to stake.
-     * @param _amount - Number of tokens to ne staked.
+     * @inheritdoc IStakingContract
      */
     function stake(
         uint256 _amount
@@ -59,8 +59,7 @@ contract StakingContract is StakingManager{
     }
 
     /**
-     * @notice Function to unstake.
-     * @param _amount - Number of tokens to be unstaked.
+     * @inheritdoc IStakingContract
      */
     function unstake(
         uint256 _amount
@@ -93,8 +92,7 @@ contract StakingContract is StakingManager{
     }
 
     /**
-     * @notice Function to be used by owner to unstake from `_staker` account
-     * @param _staker - address of the staker
+     * @inheritdoc IStakingContract
      */
     function ustakeByOwner(
         address _staker
@@ -125,9 +123,7 @@ contract StakingContract is StakingManager{
     }
 
     /**
-     * @notice - Funtion to get the total rewards for `_staker`.
-     * @param _staker - Address of he staker.
-     * @return Total rewards for `_staker`.
+     * @inheritdoc IStakingContract
      */
     function getrewards(
         address _staker
