@@ -1,1 +1,1 @@
-# emoney-assignment
+# staking-contract-variable-apr
